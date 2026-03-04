@@ -16,10 +16,10 @@ from dotenv import load_dotenv
 
 # Load environment variables from .env file
 load_dotenv()
-HUGGINGFACE_API_KEY = os.getenv('HUGGINGFACE_API_KEY', default=None)
-REPLICATE_API_TOKEN = os.getenv('REPLICATE_API_TOKEN', default=None)
-GEMINI_API_KEY = os.getenv('GEMINI_API_KEY')  # For AI video services
-ASSEMBLYAI_API_KEY = os.getenv('ASSEMBLYAI_API_KEY', 'your_assemblyai_api_key_here')  # For real speech-to-text
+HUGGINGFACE_API_KEY = os.getenv('HUGGINGFACE_API_KEY')
+REPLICATE_API_TOKEN = os.getenv('REPLICATE_API_TOKEN')
+GEMINI_API_KEY = os.getenv('GEMINI_API_KEY')
+ASSEMBLYAI_API_KEY = os.getenv('ASSEMBLYAI_API_KEY')
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -118,7 +118,7 @@ import dj_database_url
 
 DATABASES = {
     'default': dj_database_url.config(
-        default=f"mysql://root:Denin@123@localhost:3306/connectify_db",
+        default=os.getenv('DATABASE_URL', f"mysql://root:{os.getenv('DB_PASSWORD', 'Denin@123')}@localhost:3306/connectify_db"),
         conn_max_age=600,
         ssl_require=False
     )
@@ -220,8 +220,8 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'neethuannaboby@gmail.com'
-EMAIL_HOST_PASSWORD = 'grznwruvgxljaymy'
+EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER', 'neethuannaboby@gmail.com')
+EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
 # ============================================

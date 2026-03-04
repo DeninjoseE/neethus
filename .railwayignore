@@ -1,0 +1,16 @@
+venv/
+.venv/
+node_modules/
+backend/venv/
+backend/.venv/
+frontend/node_modules/
+media/
+backend/media/
+db.sqlite3
+backend/db.sqlite3
+.git/
+*.pyc
+__pycache__/
+*.mp4
+*.mp3
+*.wav
